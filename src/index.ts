@@ -11,4 +11,5 @@ export { serializePage, serializePages } from "./pageSerializer";
 export { toJson, toFrontmatter, toContext, formatPage } from "./pageOutput";
 export { applyTemplate, buildTemplateTokens } from "./pageTemplate";
 export { encodeCursor, decodeCursor, buildPageCursor } from "./pageCursor";
-export type { PageCursor } from "./pageCursor";
+export { createPageCache, buildCacheKey } from "./pageCache";
+export type { CacheEntry, PageCacheOptions } from "./pageCache";
