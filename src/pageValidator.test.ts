@@ -84,8 +84,22 @@ describe("validateConfig", () => {
   });
 
   it("validates currentPage against computed totalPages", () => {
-    const result = validateConfig({ pageSize: 10, currentPage: 10, totalItems: 50 });
+    const result = validateConfig(
+      { pageSize: 10, currentPage: 6, totalItems: 50, baseUrl: "/posts" }
+    );
     expect(result.valid).toBe(false);
-    expect(result.errors[0]).toMatch(/exceeds totalPages/);
+    expect(result.errors.some((e) => /exceeds totalPages/.test(e))).toBe(true);
+  });
+
+  it("returns valid for a single-page result set", () => {
+    const result = validateConfig({ pageSize: 10, currentPage: 1, totalItems: 5, baseUrl: "/posts" });
+    expect(result.valid).toBe(true);
+    expect(result.errors).toHaveLength(0);
+  });
+
+  it("returns valid when totalItems is zero", () => {
+    const result = validateConfig({ pageSize: 10, currentPage: 1, totalItems: 0, baseUrl: "/posts" });
+    expect(result.valid).toBe(true);
+    expect(result.errors).toHaveLength(0);
   });
 });
