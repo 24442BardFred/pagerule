@@ -53,6 +53,14 @@ describe("buildPageCounter", () => {
   it("throws when totalItems is negative", () => {
     expect(() => buildPageCounter({ totalItems: -1, pageSize: 5, currentPage: 1 })).toThrow(RangeError);
   });
+
+  it("throws when currentPage exceeds totalPages", () => {
+    expect(() => buildPageCounter({ totalItems: 10, pageSize: 5, currentPage: 5 })).toThrow(RangeError);
+  });
+
+  it("throws when pageSize is negative", () => {
+    expect(() => buildPageCounter({ totalItems: 10, pageSize: -1, currentPage: 1 })).toThrow(RangeError);
+  });
 });
 
 describe("formatPageCounter", () => {
