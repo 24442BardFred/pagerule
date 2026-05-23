@@ -16,4 +16,6 @@ export { createPageEventEmitter } from "./pageEvent";
 export { createPageHooks } from "./pageHooks";
 export { validateConfig } from "./pageValidator";
 export { buildPageLinks, serializeLinksHeader } from "./pageLinks";
-export type { PageLinks, PageLinksInput } from "./pageLinks";
+export { groupItems, groupMapToPages, getGroupKeys } from "./pageGrouping";
+export { buildPageSummary, formatPageSummary } from "./pageSummary";
+export type { PageSummary, PageSummaryInput } from "./pageSummary";
